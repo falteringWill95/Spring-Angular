@@ -3,6 +3,7 @@ package com.springAngular.backend.controller;
 import com.springAngular.backend.entity.Product;
 import com.springAngular.backend.service.IHomeService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 public class HomeController {
 
-    private final IHomeService homeService;
+    private IHomeService homeService;
+
 
     @GetMapping("/all-products")
     public List<Product> getProducts() {

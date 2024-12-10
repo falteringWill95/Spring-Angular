@@ -5,8 +5,12 @@ import com.springAngular.backend.repository.ProductRepository;
 import com.springAngular.backend.service.IHomeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +24,7 @@ public class HomeServiceImpl implements IHomeService {
 
     @Override
     public Product addProduct(Product p) {
+        log.info("Adding product old way");
         if (p.getTitle() == null || p.getTitle().isEmpty()) {
             throw new IllegalArgumentException("Product title cannot be empty");
         }
@@ -32,6 +37,7 @@ public class HomeServiceImpl implements IHomeService {
 
     @Override
     public Product editProduct(Product p) {
+        log.info("Editing product old way");
         if (p.getId_product() == null) {
             throw new IllegalArgumentException("Product ID cannot be null");
         }
@@ -47,6 +53,7 @@ public class HomeServiceImpl implements IHomeService {
 
     @Override
     public void deleteProduct(Long idProduct) {
+        log.info("Deleting product old way");
         Optional<Product> product = productRepository.findById(idProduct);
 
         product.ifPresent(p -> {
@@ -57,6 +64,7 @@ public class HomeServiceImpl implements IHomeService {
 
     @Override
     public List<Product> retrieveAll() {
+        log.info("Retriving product old way");
         return productRepository.findAll();
     }
 }
